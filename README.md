@@ -4,7 +4,6 @@
 ## Table of contents
 * [General info](#general-info)
 * [Technologies](#technologies)
-* [Technologies](#technologies)
 * [Status](#status)
 * [Features to do](#features-to-do)
 
