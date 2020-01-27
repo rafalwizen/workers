@@ -1,13 +1,21 @@
 package wizen.rafal.workers.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Employee {
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
 	private int id;
 	
@@ -19,6 +27,10 @@ public class Employee {
 	
 	@Column(name="personal_identity_number")
 	private int personalIdentityNumber;
+	
+	@OneToMany(mappedBy="employee")
+	@JoinColumn(name="work_time")
+	private List<WorkTime> workTimes;
 
 	public Employee() {
 		
@@ -61,7 +73,24 @@ public class Employee {
 	public void setPersonalIdentityNumber(int personalIdentityNumber) {
 		this.personalIdentityNumber = personalIdentityNumber;
 	}
+	
+	public List<WorkTime> getWorkTimes() {
+		return workTimes;
+	}
 
+	public void setWorkTimes(List<WorkTime> workTimes) {
+		this.workTimes = workTimes;
+	}
+
+	// method to easy add WorkTimes bi-directional
+	public void add(WorkTime tempWorkTime) {
+		if (workTimes == null) {
+			workTimes = new ArrayList<>();
+		}
+		workTimes.add(tempWorkTime);
+		tempWorkTime.setEmployee(this);
+	}
+	
 	@Override
 	public String toString() {
 		return "Employee [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName
