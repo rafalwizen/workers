@@ -21,7 +21,7 @@ public class WorkTime {
 	@Column(name="id")
 	private int id;
 	
-	// if 1 - start; if 0 - finish
+	// if true - start; if false - finish
 	@Column(name="start_finish")
 	private boolean start;
 	

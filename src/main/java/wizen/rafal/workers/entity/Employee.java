@@ -29,7 +29,6 @@ public class Employee {
 	private int personalIdentityNumber;
 	
 	@OneToMany(mappedBy="employee")
-	@JoinColumn(name="work_time")
 	private List<WorkTime> workTimes;
 
 	public Employee() {

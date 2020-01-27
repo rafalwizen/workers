@@ -14,7 +14,7 @@ import wizen.rafal.workers.entity.Employee;
 import wizen.rafal.workers.service.EmployeeService;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/api")
 public class EmployeeRestController {
 
 	
@@ -27,7 +27,6 @@ public class EmployeeRestController {
 	
 	@GetMapping("/employees")
 	public List<Employee> getEmployeesList() {
-		
 		return employeeService.findAll();
 	}
 	
