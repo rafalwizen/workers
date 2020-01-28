@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="work_time")
 public class WorkTime {
@@ -31,6 +33,7 @@ public class WorkTime {
 	@ManyToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE,
 						 CascadeType.DETACH, CascadeType.REFRESH}) // cascade without DELETE
 	@JoinColumn(name="employee_id")
+	@JsonIgnore
 	private Employee employee;
 	
 	public WorkTime() {

@@ -11,18 +11,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import wizen.rafal.workers.entity.Employee;
+import wizen.rafal.workers.entity.WorkTime;
 import wizen.rafal.workers.service.EmployeeService;
+import wizen.rafal.workers.service.WorkTimeService;
 
 @RestController
 @RequestMapping("/api")
 public class EmployeeRestController {
 
-	
+	private WorkTimeService workTimeService;
 	private EmployeeService employeeService;
 	
 	@Autowired
-	public EmployeeRestController(EmployeeService theEmployeeService) {
+	public EmployeeRestController(
+			EmployeeService theEmployeeService, WorkTimeService theWorkTimeService) {
 		employeeService = theEmployeeService;
+		workTimeService = theWorkTimeService;
+	}
+	
+	@GetMapping("workTimes")
+	public List<WorkTime> getWorkTimeList() {
+		return workTimeService.findAll();
 	}
 	
 	@GetMapping("/employees")
