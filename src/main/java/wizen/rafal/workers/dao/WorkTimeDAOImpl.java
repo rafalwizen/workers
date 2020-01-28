@@ -32,5 +32,4 @@ public class WorkTimeDAOImpl implements WorkTimeDAO {
 		
 		return workTimes;
 	}
-
 }
