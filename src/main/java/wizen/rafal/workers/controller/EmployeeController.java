@@ -1,16 +1,16 @@
 package wizen.rafal.workers.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import wizen.rafal.workers.entity.Employee;
-import wizen.rafal.workers.rest.EmployeeNotFoundException;
+import wizen.rafal.workers.entity.WorkTime;
 import wizen.rafal.workers.service.EmployeeService;
 import wizen.rafal.workers.service.WorkTimeService;
 
@@ -42,14 +42,16 @@ public class EmployeeController {
 	
 	@RequestMapping("/employeeWorkTime")
 	public String showEmployeeWorkTime(Model theModel, @RequestParam("employeeId") int theId) {
-//		Employee tempEmployee = employeeService.getEmployeeById(theId);
-//		
-//		if(tempEmployee == null) {
-//			throw new EmployeeNotFoundException("Employee id not found - " + theId);
-//		}
-		
 		theModel.addAttribute("tempEmployee", employeeService.getEmployeeById(theId));
 		return "employee-work-time";
+	}
+	
+	@RequestMapping("/editEployeeWorkTime")
+	public String editEmployeeWorkTime(Model theModel, @RequestParam("workTimeId") int theId) {
+		
+		theModel.addAttribute("tempWorkTime", workTimeService.getWorkTimeById(theId));
+		System.out.println(workTimeService.getWorkTimeById(theId));
+		return "work-time-form";
 	}
 	
 	@GetMapping("/showFormForAdd")
@@ -59,12 +61,18 @@ public class EmployeeController {
 		
 		theModel.addAttribute("employee", theEmployee);
 		
-		return "add-employee";
+		return "employee-form";
 	}
 	
-	@RequestMapping("/save")
-	public String save(@ModelAttribute("employee") Employee theEmployee) {
+	@RequestMapping("/saveEmployee")
+	public String saveEmployee(@ModelAttribute("employee") Employee theEmployee) {
 		employeeService.save(theEmployee);
+		return "redirect:/form";
+	}
+	
+	@RequestMapping("/saveWorkTime")
+	public String saveWorkTime(@ModelAttribute("workTime") WorkTime theWorkTime) {
+		workTimeService.save(theWorkTime);
 		return "redirect:/form";
 	}
 	

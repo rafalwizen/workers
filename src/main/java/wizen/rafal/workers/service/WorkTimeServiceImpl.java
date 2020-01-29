@@ -25,5 +25,15 @@ public class WorkTimeServiceImpl implements WorkTimeService{
 		return workTimeDAO.findAll();
 	}
 
+	@Override
+	public WorkTime getWorkTimeById(int theId) {
+		return workTimeDAO.getWorkTimeById(theId);
+	}
+
+	@Override
+	public void save(WorkTime theWorkTime) {
+		workTimeDAO.save(theWorkTime);
+	}
+
 	
 }

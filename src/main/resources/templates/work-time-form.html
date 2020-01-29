@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" th:href="@{/css/styles.css}" />
+	<title>Add new employee</title>
+</head>
+<body>
+	
+	<div class="container">
+		<h2>Save Working Time</h2>
+		<hr>
+		
+		<form action="#" th:action="@{/saveWorkTime}" th:object="${tempWorkTime}" method="POST">
+		
+		  	<input type="hidden" th:field="*{id}"/> <!-- to handle update -->
+			<input type="checkbox" th:checked="*{start}" class="form-control mb-4">
+			<input type="datetime" th:field="*{dateAndTime}" class="form-control mb-4">  
+			<button type="submit" class="btn btn-info col-2">Save</button>
+		</form>
+		<hr>
+		<a th:href="@{/employeeWorkTime(employeeId=${tempWorkTime.employee.id})}">Back to Employee</a>
+	</div>
+</body>
+</html>

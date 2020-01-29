@@ -32,4 +32,18 @@ public class WorkTimeDAOImpl implements WorkTimeDAO {
 		
 		return workTimes;
 	}
+
+	@Override
+	public WorkTime getWorkTimeById(int theId) {
+		Session currentSession = entityManager.unwrap(Session.class);
+		WorkTime tempWorkTime = currentSession.get(WorkTime.class, theId);
+		
+		return tempWorkTime;
+	}
+
+	@Override
+	public void save(WorkTime theWorkTime) {
+		Session currentSession = entityManager.unwrap(Session.class);
+		currentSession.save(theWorkTime);
+	}
 }

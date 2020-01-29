@@ -7,7 +7,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	
+	<link rel="stylesheet" th:href="@{/css/styles.css}" />
 	<title>Employees</title>
 </head>
 <body>
@@ -16,14 +16,27 @@
 	<table class="table table-bordered table-striped">
 		<thead class="thead-dark">
 			<tr>
+				<th>Year</th>
+				<th>Month</th>
+				<th>Day</th>
+				<th>Time</th>
 				<th>Start-Finish</th>
-				<th>Date</th>
+				<th>Actions</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr th:each="tempWorkTime : ${tempEmployee.workTimes}">
+				<td th:text="${#dates.year({tempWorkTime.dateAndTime})}" />
+				<td th:text="${#dates.month({tempWorkTime.dateAndTime})}" />
+				<td th:text="${#dates.day({tempWorkTime.dateAndTime})}" />
+				<td th:text="${#dates.format({tempWorkTime.dateAndTime}, 'HH:mm:ss')}" />
 				<td th:text="${tempWorkTime.start}" />
-				<td th:text="${tempWorkTime.dateAndTime}" />
+				<td>
+				<a th:href="@{/editEployeeWorkTime(workTimeId=${tempWorkTime.id})}"
+						class="btn btn-info btn-sm">
+						Edit work Time
+				</a>
+				</td>
 		</tbody>
 	</table>
 	<a th:href="@{/listEmployees}">Back to Employees list</a>

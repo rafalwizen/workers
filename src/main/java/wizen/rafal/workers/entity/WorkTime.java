@@ -77,4 +77,9 @@ public class WorkTime {
 		this.employee = employee;
 	}
 
+	@Override
+	public String toString() {
+		return "WorkTime [id=" + id + ", start=" + start + ", dateAndTime=" + dateAndTime 
+				+ ", employee=" + employee + "]";
+	}
 }
