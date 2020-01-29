@@ -13,8 +13,19 @@
 <body>
 <div class="container">
 	<h2 th:text="${tempEmployee.firstName} +' '+ ${tempEmployee.lastName}"></h2>
-	
-	
+	<table class="table table-bordered table-striped">
+		<thead class="thead-dark">
+			<tr>
+				<th>Start-Finish</th>
+				<th>Date</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="tempWorkTime : ${tempEmployee.workTimes}">
+				<td th:text="${tempWorkTime.start}" />
+				<td th:text="${tempWorkTime.dateAndTime}" />
+		</tbody>
+	</table>
 	<a th:href="@{/listEmployees}">Back to Employees list</a>
 </div>
 </body>

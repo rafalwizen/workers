@@ -1,5 +1,9 @@
 # Workers
->Application made to add employees to database and (in final version) to add work time
+>Application made to add employees to database and to add working times.
+
+>login: admin
+
+>password: admin1
 
 ## Table of contents
 * [General info](#general-info)
@@ -8,7 +12,7 @@
 * [Features to do](#features-to-do)
 
 ## General info
-Inspiration to do this application was course made by Chad Darby (Spring & Hibernate for Beginners) and my job where I have system to track work time. Already this application has just features to add employees to database but I'll soon add module to store times of work end REST endpoints to connect with other application.
+Inspiration to do this application was course made by Chad Darby (Spring & Hibernate for Beginners) and my job where I have system to track working time. Already this application has features to add employees to database and to keep working times in database. Now I'm working on adding features to add working times to database by API and editing existing working times by html page.
 
 ## Technologies
 * Java - version 1.8
@@ -26,5 +30,5 @@ Inspiration to do this application was course made by Chad Darby (Spring & Hiber
 Project is still being developed.
 
 ## Features to do
-Add unit to save work time in database.
+Add unit to save and edit work times in database.
 Add REST endpoints to connect with other application.
