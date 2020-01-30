@@ -44,6 +44,8 @@ public class WorkTimeDAOImpl implements WorkTimeDAO {
 	@Override
 	public void save(WorkTime theWorkTime) {
 		Session currentSession = entityManager.unwrap(Session.class);
-		currentSession.save(theWorkTime);
+
+		System.out.println(theWorkTime);
+		currentSession.saveOrUpdate(theWorkTime);
 	}
 }

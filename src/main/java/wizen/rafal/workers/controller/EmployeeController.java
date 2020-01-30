@@ -1,10 +1,15 @@
 package wizen.rafal.workers.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -67,18 +72,26 @@ public class EmployeeController {
 	@RequestMapping("/saveEmployee")
 	public String saveEmployee(@ModelAttribute("employee") Employee theEmployee) {
 		employeeService.save(theEmployee);
-		return "redirect:/form";
+		return "redirect:/listEmployees";
+	}
+	
+	// this InitBinder is used to solve problems with parsing String to Date in saveWorkTime method.
+	@InitBinder     
+	public void initBinder(WebDataBinder binder){
+	     binder.registerCustomEditor(
+	    		 Date.class, new CustomDateEditor(new SimpleDateFormat("dd-MM-yyyy HH:mm:ss"), true, 19));
+	     binder.registerCustomEditor(Employee.class, new EmployeeEditor(employeeService));
 	}
 	
 	@RequestMapping("/saveWorkTime")
 	public String saveWorkTime(@ModelAttribute("workTime") WorkTime theWorkTime) {
 		workTimeService.save(theWorkTime);
-		return "redirect:/form";
+		return "redirect:/listEmployees";
 	}
 	
 	@GetMapping("/delete")
 	public String deleteEmployee(@RequestParam("employeeId") int theId) {
 		employeeService.deleteById(theId);
-		return "redirect:/form";
+		return "redirect:/listEmployees";
 	}
 }
