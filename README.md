@@ -30,5 +30,8 @@ Inspiration to do this application was course made by Chad Darby (Spring & Hiber
 Project is still being developed.
 
 ## Features to do
-Add unit to save and edit work times in database.
-Add REST endpoints to connect with other application.
+Add unit to delete work times in database.
+
+Add REST endpoints to connect with other application (especially endpoint to add times by outsorced readers)
+
+Add different users to use only specific part od program (E.g. user, managerm admin)
