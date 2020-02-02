@@ -55,7 +55,7 @@ public class EmployeeController {
 	public String editEmployeeWorkTime(Model theModel, @RequestParam("workTimeId") int theId) {
 		
 		theModel.addAttribute("tempWorkTime", workTimeService.getWorkTimeById(theId));
-		System.out.println(workTimeService.getWorkTimeById(theId));
+		System.out.println("editEmployeeWorkTime"+workTimeService.getWorkTimeById(theId));
 		return "work-time-form";
 	}
 	
@@ -80,11 +80,12 @@ public class EmployeeController {
 	public void initBinder(WebDataBinder binder){
 	     binder.registerCustomEditor(
 	    		 Date.class, new CustomDateEditor(new SimpleDateFormat("dd-MM-yyyy HH:mm:ss"), true, 19));
-	     binder.registerCustomEditor(Employee.class, new EmployeeEditor(employeeService));
 	}
 	
 	@RequestMapping("/saveWorkTime")
 	public String saveWorkTime(@ModelAttribute("workTime") WorkTime theWorkTime) {
+		//this line is used to set Employee by passed id - probably it'll be changed
+		theWorkTime.setEmployee(employeeService.getEmployeeById(theWorkTime.getEmployee().getId()));
 		workTimeService.save(theWorkTime);
 		return "redirect:/listEmployees";
 	}

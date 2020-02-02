@@ -26,11 +26,13 @@ public class WorkTimeServiceImpl implements WorkTimeService{
 	}
 
 	@Override
+	@Transactional
 	public WorkTime getWorkTimeById(int theId) {
 		return workTimeDAO.getWorkTimeById(theId);
 	}
 
 	@Override
+	@Transactional
 	public void save(WorkTime theWorkTime) {
 		workTimeDAO.save(theWorkTime);
 	}
