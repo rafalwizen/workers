@@ -55,7 +55,7 @@ public class EmployeeController {
 	public String editEmployeeWorkTime(Model theModel, @RequestParam("workTimeId") int theId) {
 		
 		theModel.addAttribute("tempWorkTime", workTimeService.getWorkTimeById(theId));
-		System.out.println("editEmployeeWorkTime"+workTimeService.getWorkTimeById(theId));
+
 		return "work-time-form";
 	}
 	
@@ -87,7 +87,7 @@ public class EmployeeController {
 		//this line is used to set Employee by passed id - probably it'll be changed
 		theWorkTime.setEmployee(employeeService.getEmployeeById(theWorkTime.getEmployee().getId()));
 		workTimeService.save(theWorkTime);
-		return "redirect:/listEmployees";
+		return "redirect:/employeeWorkTime?employeeId="+theWorkTime.getEmployee().getId();
 	}
 	
 	@GetMapping("/delete")
