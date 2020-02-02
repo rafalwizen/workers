@@ -13,6 +13,11 @@
 <body>
 <div class="container">
 	<h2 th:text="${tempEmployee.firstName} +' '+ ${tempEmployee.lastName}"></h2>
+	<hr>
+	<a th:href="@{/showFormForAddNewWorkTime(tempEmployeeId=${tempEmployee.id})}"
+		class="btn btn-primary btn-sm mb-3 mt-3">
+		Add New Working time
+	</a>
 	<table class="table table-bordered table-striped">
 		<thead class="thead-dark">
 			<tr>

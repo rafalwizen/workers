@@ -37,7 +37,7 @@ public class WorkTime {
 	private Employee employee;
 	
 	public WorkTime() {
-		
+		this.dateAndTime = new Date();
 	}
 
 	public WorkTime(boolean start) {

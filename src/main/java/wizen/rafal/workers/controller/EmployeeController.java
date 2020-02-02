@@ -59,14 +59,24 @@ public class EmployeeController {
 		return "work-time-form";
 	}
 	
-	@GetMapping("/showFormForAdd")
-	public String showFormForAdd(Model theModel) {
+	@GetMapping("/showFormForAddNewEmployee")
+	public String showFormForAddNewEmployee(Model theModel) {
 		
 		Employee theEmployee = new Employee();
 		
 		theModel.addAttribute("employee", theEmployee);
 		
 		return "employee-form";
+	}
+	
+	@GetMapping("/showFormForAddNewWorkTime")
+	public String showFormForAddNewWorkTime(
+			Model theModel, @RequestParam("tempEmployeeId") int theId) {
+		
+		WorkTime tempWorkTime = new WorkTime();
+		tempWorkTime.setEmployee(employeeService.getEmployeeById(theId));
+		theModel.addAttribute("tempWorkTime", tempWorkTime);
+		return "work-time-form";
 	}
 	
 	@RequestMapping("/saveEmployee")
