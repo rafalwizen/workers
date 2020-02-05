@@ -23,6 +23,7 @@ Inspiration to do this application was course made by Chad Darby (Spring & Hiber
 * CSS - version 3
 * Bootstrap - version 4.3.1
 * Maven - version 4.0.0
+* MySQL driver
 
 
 ## Status
@@ -32,6 +33,4 @@ Project is still being developed.
 ## Features to do
 Add unit to delete work times in database.
 
-Add REST endpoints to connect with other application (especially endpoint to add times by outsorced readers)
-
-Add different users to use only specific part od program (E.g. user, managerm admin)
+Add different users to use only specific part of program (E.g. user, manager, administrator)
