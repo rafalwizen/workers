@@ -1,4 +1,7 @@
 # Workers
+
+>https://rafalwizen-workers.herokuapp.com/
+
 >Application made to add employees to database and to add working times.
 
 >login: admin
@@ -8,11 +11,13 @@
 ## Table of contents
 * [General info](#general-info)
 * [Technologies](#technologies)
+* [Screenshots](#screenshots)
 * [Status](#status)
 * [Features to do](#features-to-do)
 
+
 ## General info
-Inspiration to do this application was course made by Chad Darby (Spring & Hibernate for Beginners) and my job where I have system to track working time. Already this application has features to add employees to database and to keep working times in database. Now I'm working on adding features to add working times to database by API and editing existing working times by html page.
+Inspiration to do this application was course made by Chad Darby (Spring & Hibernate for Beginners) and my job where I have system to track working time. Already this application has features to add employees to database and to keep working times in database. It's already possible add working times to database by API and editing existing working times by html page.
 
 ## Technologies
 * Java - version 1.8
@@ -25,6 +30,11 @@ Inspiration to do this application was course made by Chad Darby (Spring & Hiber
 * Maven - version 4.0.0
 * MySQL driver
 
+## Screenshots
+![Example screenshot](./screenshots/screenshot1.jpg)
+
+
+![Example screenshot](./screenshots/screenshot2.jpg)
 
 ## Status
 
