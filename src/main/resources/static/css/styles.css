@@ -1,8 +1,9 @@
 body {
-	background-image: url("/images/shattered.jpg");
+	background-image: url("/images/background-email-pattern.png");
 	/* Background pattern from Toptal Subtle Patterns Toptal.com*/
 }
 
 p.info {
 	font-size: 150%
 }
+
