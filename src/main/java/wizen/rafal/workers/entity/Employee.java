@@ -24,7 +24,7 @@ public class Employee {
 	@Column(name="last_name")
 	private String lastName;
 	
-	@Column(name="personal_identity_number")
+	@Column(name="personal_identity_number", unique = true)
 	private int personalIdentityNumber;
 	
 	@OneToMany(mappedBy="employee")

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import wizen.rafal.workers.entity.Employee;
@@ -29,7 +30,7 @@ public class EmployeeRestController {
 		workTimeService = theWorkTimeService;
 	}
 	
-	@GetMapping("workTimes")
+	@GetMapping("/workTimes")
 	public List<WorkTime> getWorkTimeList() {
 		return workTimeService.findAll();
 	}
@@ -53,9 +54,26 @@ public class EmployeeRestController {
 	@PostMapping("/employees")
 	public Employee addNewEmployee(@RequestBody Employee theEmployee) {
 		
+		// EmployeeDAO method saveOrUpdate - if id is null/0 then INSERT new Employee
 		theEmployee.setId(0);
 		employeeService.save(theEmployee);
 		
 		return theEmployee;
+	}
+	
+	@PostMapping("/workTimes")
+	public WorkTime addNewWorkTime(
+			@RequestBody HelperTransferObject tempHelperTransferObject) {
+		
+		Employee tempEmployee = employeeService.getEmployeeByPID(tempHelperTransferObject.getPersonalIdentityNumber());
+		WorkTime tempWorkTime = new WorkTime (tempHelperTransferObject.isStart());
+		//method saveOrUpdate - if id is null/0 then INSERT new WorkTime
+		tempWorkTime.setId(0);
+		tempWorkTime.setEmployee(tempEmployee);
+		
+		workTimeService.save(tempWorkTime);
+		
+		return tempWorkTime;
+
 	}
 }

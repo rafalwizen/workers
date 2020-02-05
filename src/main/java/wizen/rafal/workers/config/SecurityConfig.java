@@ -31,11 +31,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-				.antMatchers("/form").permitAll()
-				.anyRequest().hasRole("ADMIN")
+				.anyRequest().permitAll()   // only for test - while I'm building REST ednpoints
 				.and()
-				.formLogin().permitAll()
-				.and()
+				.csrf().disable()
+				//				.anyRequest().hasRole("ADMIN")
+//				.and()
+//				.formLogin().permitAll()
+				
 				.logout().permitAll();
 	}
 	

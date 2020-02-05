@@ -10,4 +10,5 @@ public interface EmployeeService {
 	public void save(Employee theEmployee);
 	public void deleteById(int theId);
 	public Employee getEmployeeById(int theId);
+	public Employee getEmployeeByPID(int personalIdentityNumber);
 }

@@ -46,4 +46,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 		
 		return employeeDAO.getEmployeeById(theId);
 	}
+
+	@Override
+	@Transactional
+	public Employee getEmployeeByPID(int personalIdentityNumber) {
+		
+		return employeeDAO.getEmployeeByPID(personalIdentityNumber);
+	}
 }

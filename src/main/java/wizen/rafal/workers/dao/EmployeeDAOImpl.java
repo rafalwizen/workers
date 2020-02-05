@@ -54,6 +54,15 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 		return tempEmp;
 	}
 
+	@Override
+	public Employee getEmployeeByPID(int personalIdentityNumber) {
+		Session currentSession = entityManager.unwrap(Session.class);
+		Query<Employee> theQuery = currentSession.createQuery(
+				"from Employee E WHERE E.personalIdentityNumber = "+personalIdentityNumber, Employee.class);
+		Employee tempEmp = theQuery.getSingleResult();
+		return tempEmp;
+	}
+
 	
 	
 	
