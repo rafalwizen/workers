@@ -32,10 +32,10 @@ public class EmployeeController {
 		workTimeService = theWorkTimeService;
 	}
 	
-	@RequestMapping("/")
-	public String startPage() {
-		return "redirect:/listEmployees";
-	}
+//	@RequestMapping("/")
+//	public String startPage() {
+//		return "redirect:/listEmployees";
+//	}
 	
 	@RequestMapping("/listEmployees")
 	public String showListEmployees(Model theModel) {
