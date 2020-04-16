@@ -11,7 +11,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import wizen.rafal.workers.entity.Employee;
@@ -37,7 +37,7 @@ public class EmployeeController {
 //		return "redirect:/listEmployees";
 //	}
 	
-	@RequestMapping("/listEmployees")
+	@GetMapping("/listEmployees")
 	public String showListEmployees(Model theModel) {
 		
 		theModel.addAttribute("employees", employeeService.findAll());
@@ -45,13 +45,13 @@ public class EmployeeController {
 		return "employees";
 	}
 	
-	@RequestMapping("/employeeWorkTime")
+	@GetMapping("/employeeWorkTime")
 	public String showEmployeeWorkTime(Model theModel, @RequestParam("employeeId") int theId) {
 		theModel.addAttribute("tempEmployee", employeeService.getEmployeeById(theId));
 		return "employee-work-time";
 	}
 	
-	@RequestMapping("/editEployeeWorkTime")
+	@GetMapping("/editEployeeWorkTime")
 	public String editEmployeeWorkTime(Model theModel, @RequestParam("workTimeId") int theId) {
 		
 		theModel.addAttribute("tempWorkTime", workTimeService.getWorkTimeById(theId));
@@ -79,7 +79,7 @@ public class EmployeeController {
 		return "work-time-form";
 	}
 	
-	@RequestMapping("/saveEmployee")
+	@PostMapping("/saveEmployee")
 	public String saveEmployee(@ModelAttribute("employee") Employee theEmployee) {
 		employeeService.save(theEmployee);
 		return "redirect:/listEmployees";
@@ -92,7 +92,7 @@ public class EmployeeController {
 	    		 Date.class, new CustomDateEditor(new SimpleDateFormat("dd-MM-yyyy HH:mm:ss"), true, 19));
 	}
 	
-	@RequestMapping("/saveWorkTime")
+	@PostMapping("/saveWorkTime")
 	public String saveWorkTime(@ModelAttribute("workTime") WorkTime theWorkTime) {
 		//this line is used to set Employee by passed id
 		theWorkTime.setEmployee(employeeService.getEmployeeById(theWorkTime.getEmployee().getId()));
