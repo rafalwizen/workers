@@ -40,7 +40,7 @@
 				<td th:text="${#dates.month({tempWorkTime.dateAndTime})}" />
 				<td th:text="${#dates.day({tempWorkTime.dateAndTime})}" />
 				<td th:text="${#dates.format({tempWorkTime.dateAndTime}, 'HH:mm:ss')}" />
-				<td th:text="${tempWorkTime.start}" />
+				<td th:text="${tempWorkTime.start} ? 'start' : 'finish'" />
 				<td>
 				<a th:href="@{/editEployeeWorkTime(workTimeId=${tempWorkTime.id})}"
 						class="btn btn-info btn-sm">
