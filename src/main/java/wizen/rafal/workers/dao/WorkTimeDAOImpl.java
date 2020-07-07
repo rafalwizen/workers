@@ -47,4 +47,11 @@ public class WorkTimeDAOImpl implements WorkTimeDAO {
 
 		currentSession.saveOrUpdate(theWorkTime);
 	}
+
+	@Override
+	public void deleteById(int theId) {
+		Session currentSession = entityManager.unwrap(Session.class);
+		WorkTime tempWorkTime = currentSession.get(WorkTime.class, theId);
+		currentSession.delete(tempWorkTime);
+	}
 }

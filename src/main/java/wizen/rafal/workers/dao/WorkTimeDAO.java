@@ -9,4 +9,5 @@ public interface WorkTimeDAO {
 	public List<WorkTime> findAll();
 	public WorkTime getWorkTimeById(int theId);
 	public void save(WorkTime theWorkTime);
+	public void deleteById(int theId);
 }

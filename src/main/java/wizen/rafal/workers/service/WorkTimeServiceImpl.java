@@ -37,5 +37,9 @@ public class WorkTimeServiceImpl implements WorkTimeService{
 		workTimeDAO.save(theWorkTime);
 	}
 
-	
+	@Override
+	@Transactional
+	public void deleteById(int theId) {
+		workTimeDAO.deleteById(theId);
+	}
 }

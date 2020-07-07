@@ -46,6 +46,11 @@
 						class="btn btn-info btn-sm">
 						Edit work Time
 				</a>
+				<a th:href="@{/deleteWorkTime(workTimeId=${tempWorkTime.id})}"
+						class="btn btn-danger btn-sm"
+						onclick="if(!(confirm('Are you sure you want to delete this work time?'))) return false">
+						Delete
+				</a>
 				</td>
 		</tbody>
 	</table>

@@ -9,4 +9,5 @@ public interface WorkTimeService {
 	public List<WorkTime> findAll();
 	public Object getWorkTimeById(int theId);
 	public void save(WorkTime theWorkTime);
+	public void deleteById(int theId);
 }

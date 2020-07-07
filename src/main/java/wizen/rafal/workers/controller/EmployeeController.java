@@ -32,11 +32,6 @@ public class EmployeeController {
 		workTimeService = theWorkTimeService;
 	}
 	
-//	@RequestMapping("/")
-//	public String startPage() {
-//		return "redirect:/listEmployees";
-//	}
-	
 	@GetMapping("/listEmployees")
 	public String showListEmployees(Model theModel) {
 		
@@ -100,9 +95,17 @@ public class EmployeeController {
 		return "redirect:/employeeWorkTime?employeeId="+theWorkTime.getEmployee().getId();
 	}
 	
-	@GetMapping("/delete")
+	@GetMapping("/deleteEmployee")
 	public String deleteEmployee(@RequestParam("employeeId") int theId) {
 		employeeService.deleteById(theId);
 		return "redirect:/listEmployees";
+	}
+	
+	@GetMapping("/deleteWorkTime")
+	public String deleteWorkTime(@RequestParam("workTimeId") int theId) {
+		WorkTime tempWorkTime = (WorkTime) workTimeService.getWorkTimeById(theId);
+		int tempEmployeeId = tempWorkTime.getEmployee().getId();
+		workTimeService.deleteById(theId);
+		return "redirect:/employeeWorkTime?employeeId="+tempEmployeeId;
 	}
 }

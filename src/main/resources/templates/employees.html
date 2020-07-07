@@ -37,7 +37,7 @@
 						class="btn btn-info btn-sm">
 						Get Work Times
 				</a>
-				<a th:href="@{/delete(employeeId=${tempEmployee.id})}"
+				<a th:href="@{/deleteEmployee(employeeId=${tempEmployee.id})}"
 						class="btn btn-danger btn-sm"
 						onclick="if(!(confirm('Are you sure you want to delete this employee?'))) return false">
 						Delete
