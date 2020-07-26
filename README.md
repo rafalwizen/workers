@@ -43,13 +43,21 @@ There is possibility to add working time by REST (POST) endpoint
 rafalwizen-workers.herokuapp.com/api/workTimes
 
 ![Example screenshot](./screenshots/screenshot5.jpg)
+
+Sql schema:
+
+
+![Example screenshot](./screenshots/screenshot6.jpg)
+
 ## Status
 
 Project is still being developed.
 
 ## Features to do
-Add unit to delete work times in database.
+Add unit to delete work times from database.
 
-Add different users to use only specific part of program (E.g. user, manager, administrator)
+Add different users to use only specific part of program (E.g. user, manager, administrator), already there is only admin role.
 
-Fix server time
+Fix server time.
+
+Add custom login form.
