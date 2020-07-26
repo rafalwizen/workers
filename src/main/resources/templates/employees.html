@@ -12,7 +12,7 @@
 </head>
 <body>
 <div class="container">
-	<h2>Employee list</h2>
+	<h2>Employee list (login: admin, password: admin1)</h2>
 	<hr>
 	<a th:href="@{/showFormForAddNewEmployee}"
 		class="btn btn-primary btn-sm mb-3 mt-3">
@@ -47,6 +47,10 @@
 			</tr>
 		</tbody>		
 	</table>
+	<a th:href="@{/logout}"
+		class="btn btn-primary btn-sm mb-3 mt-3">
+		Logout
+	</a>
 </div>
 
 </body>

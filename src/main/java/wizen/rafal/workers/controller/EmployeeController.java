@@ -2,13 +2,9 @@ package wizen.rafal.workers.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
@@ -39,16 +35,7 @@ public class EmployeeController {
 	}
 	
 	@GetMapping("/listEmployees")
-	public String showListEmployees(Model theModel) {
-		
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		Set<String> roles = authentication.getAuthorities().stream()
-			     .map(r -> r.getAuthority()).collect(Collectors.toSet());
-		for(String role : roles) {
-			System.out.println(role);
-		}
-		
-		
+	public String showListEmployees(Model theModel) {	
 		theModel.addAttribute("employees", employeeService.findAll());
 		
 		return "employees";
