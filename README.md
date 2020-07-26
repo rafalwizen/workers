@@ -1,7 +1,7 @@
 # Workers
 
 >Application made to add employees to database and to add working times. It's uploaded on heroku:
-[rafalwizen-workers.herokuapp.com](rafalwizen-workers.herokuapp.com)
+[rafalwizen-workers.herokuapp.com](http://rafalwizen-workers.herokuapp.com)
 
 
 ## Table of contents
