@@ -26,21 +26,15 @@
 	<table class="table table-bordered table-striped">
 		<thead class="thead-dark">
 			<tr>
-				<th>Year</th>
-				<th>Month</th>
-				<th>Day</th>
-				<th>Time</th>
-				<th>Start-Finish</th>
+				<th>Start</th>
+				<th>Finish</th>
 				<th>Actions</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr th:each="tempWorkTime : ${tempEmployee.workTimes}">
-				<td th:text="${#dates.year({tempWorkTime.dateAndTime})}" />
-				<td th:text="${#dates.month({tempWorkTime.dateAndTime})}" />
-				<td th:text="${#dates.day({tempWorkTime.dateAndTime})}" />
-				<td th:text="${#dates.format({tempWorkTime.dateAndTime}, 'HH:mm:ss')}" />
-				<td th:text="${tempWorkTime.start} ? 'start' : 'finish'" />
+				<td th:text="${tempWorkTime.startDate}" />
+				<td th:text="${tempWorkTime.endDate}" />
 				<td>
 				<a th:href="@{/editEployeeWorkTime(workTimeId=${tempWorkTime.id})}"
 						class="btn btn-info btn-sm">

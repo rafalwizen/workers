@@ -21,8 +21,8 @@
 		
 		  	<input type="hidden" th:field="*{id}"/> <!-- to handle update -->
 		  	<p class="info"> Checked - start, unchecked - finish </p>
-			<input type="checkbox" th:field="*{start}" class="form-control mb-4">
-			<input type="datetime" th:field="*{dateAndTime}" class="form-control mb-4"> 
+			<input type="datetime" th:field="*{startDate}" class="form-control mb-4">
+			<input type="datetime" th:field="*{endDate}" class="form-control mb-4">
 			<input type="hidden" th:field="*{employee.id}"/> <!-- to handle update -->
 			<button type="submit" class="btn btn-info col-2">Save</button>
 		</form>

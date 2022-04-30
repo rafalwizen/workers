@@ -23,12 +23,11 @@ public class WorkTime {
 	@Column(name="id")
 	private int id;
 	
-	// if true - start; if false - finish
-	@Column(name="start_finish")
-	private boolean start;
-	
-	@Column(name="date_and_time")
-	private Date dateAndTime;
+	@Column(name="start_date")
+	private Date startDate;
+
+	@Column(name="end_date")
+	private Date endDate;
 	
 	@ManyToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE,
 						 CascadeType.DETACH, CascadeType.REFRESH}) // cascade without DELETE
@@ -37,12 +36,10 @@ public class WorkTime {
 	private Employee employee;
 	
 	public WorkTime() {
-		this.dateAndTime = new Date();
+
 	}
 
 	public WorkTime(boolean start) {
-		this.start = start;
-		this.dateAndTime = new Date();
 	}
 
 	public int getId() {
@@ -53,20 +50,20 @@ public class WorkTime {
 		this.id = id;
 	}
 
-	public boolean isStart() {
-		return start;
+	public Date getStartDate() {
+		return startDate;
 	}
 
-	public void setStart(boolean start) {
-		this.start = start;
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
 	}
 
-	public Date getDateAndTime() {
-		return dateAndTime;
+	public Date getEndDate() {
+		return endDate;
 	}
 
-	public void setDateAndTime(Date dateAndTime) {
-		this.dateAndTime = dateAndTime;
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
 	}
 
 	public Employee getEmployee() {
@@ -77,9 +74,4 @@ public class WorkTime {
 		this.employee = employee;
 	}
 
-	@Override
-	public String toString() {
-		return "WorkTime [id=" + id + ", start=" + start + ", dateAndTime=" + dateAndTime 
-				+ ", employee=" + employee + "]";
-	}
 }
