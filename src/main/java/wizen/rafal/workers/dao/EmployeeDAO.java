@@ -3,6 +3,7 @@ package wizen.rafal.workers.dao;
 import java.util.List;
 
 import wizen.rafal.workers.entity.Employee;
+import wizen.rafal.workers.entity.User;
 
 public interface EmployeeDAO {
 
@@ -11,4 +12,5 @@ public interface EmployeeDAO {
 	public void deleteById(int theId);
 	public Employee getEmployeeById(int theId);
 	public Employee getEmployeeByPID(int personalIdentityNumber);
+	public List<User> findAllUsers();
 }

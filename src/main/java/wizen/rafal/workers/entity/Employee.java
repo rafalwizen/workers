@@ -1,15 +1,11 @@
 package wizen.rafal.workers.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 @Entity
 public class Employee {
@@ -27,7 +23,10 @@ public class Employee {
 	
 	@Column(name="personal_identity_number", unique = true)
 	private int personalIdentityNumber;
-	
+
+	@OneToOne(mappedBy = "employee")
+	@JsonIgnore
+	private User user;
 	@OneToMany(mappedBy="employee", cascade = CascadeType.ALL)
 	private List<WorkTime> workTimes;
 
@@ -95,5 +94,12 @@ public class Employee {
 		return "Employee [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName
 				+ ", personalIdentityNumber=" + personalIdentityNumber + "]";
 	}
-	
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 }

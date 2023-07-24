@@ -3,6 +3,7 @@ package wizen.rafal.workers.service;
 import java.util.List;
 
 import wizen.rafal.workers.entity.Employee;
+import wizen.rafal.workers.entity.User;
 
 public interface EmployeeService {
 
@@ -11,4 +12,6 @@ public interface EmployeeService {
 	public void deleteById(int theId);
 	public Employee getEmployeeById(int theId);
 	public Employee getEmployeeByPID(int personalIdentityNumber);
+	public List<User> findAllUsers();
+
 }

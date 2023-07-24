@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import wizen.rafal.workers.entity.Employee;
+import wizen.rafal.workers.entity.User;
 
 @Repository
 public class EmployeeDAOImpl implements EmployeeDAO {
@@ -63,7 +64,17 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 		return tempEmp;
 	}
 
-	
-	
-	
+	@Override
+	public List<User> findAllUsers() {
+		Session currentSession = entityManager.unwrap(Session.class);
+
+		Query<User> theQuery
+				= currentSession.createQuery("from User", User.class);
+
+		List<User> users = theQuery.getResultList();
+
+		return users;
+	}
+
+
 }
