@@ -15,7 +15,7 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name="work_time")
+@Table(name="WORK_TIME")
 public class WorkTime {
 
 	@Id
