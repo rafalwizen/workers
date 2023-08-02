@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import wizen.rafal.workers.dao.EmployeeDAO;
 import wizen.rafal.workers.entity.Employee;
-import wizen.rafal.workers.entity.User;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -23,42 +22,26 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	@Transactional
 	public List<Employee> findAll() {
-		
 		return employeeDAO.findAll();
 	}
-
 	@Override
 	@Transactional
 	public void save(Employee theEmployee) {
-		
-		
 		employeeDAO.save(theEmployee);
 	}
-
 	@Override
 	@Transactional
 	public void deleteById(int theId) {
 		employeeDAO.deleteById(theId);
 	}
-
 	@Override
 	@Transactional
 	public Employee getEmployeeById(int theId) {
-		
 		return employeeDAO.getEmployeeById(theId);
 	}
-
 	@Override
 	@Transactional
 	public Employee getEmployeeByPID(int personalIdentityNumber) {
-		
 		return employeeDAO.getEmployeeByPID(personalIdentityNumber);
-	}
-
-	@Override
-	@Transactional
-	public List<User> findAllUsers() {
-
-		return employeeDAO.findAllUsers();
 	}
 }

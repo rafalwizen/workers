@@ -48,11 +48,6 @@ public class EmployeeRestController {
 		return employeeService.findAll();
 	}
 
-	@GetMapping("/users")
-	public List<User> getUsersList() {
-		return employeeService.findAllUsers();
-	}
-
 	@GetMapping("/employees/{employeeId}")
 	public Employee getEmployeeById (@PathVariable int employeeId) {
 		Employee tempEmployee = employeeService.getEmployeeById(employeeId);

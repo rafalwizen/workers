@@ -16,12 +16,12 @@ import wizen.rafal.workers.entity.User;
 public class EmployeeDAOImpl implements EmployeeDAO {
 
 	private EntityManager entityManager;
-	
+
 	@Autowired
 	public EmployeeDAOImpl (EntityManager theEntityManager) {
 		entityManager = theEntityManager;
 	}
-	
+
 	@Override
 	public List<Employee> findAll() {
 		Session currentSession = entityManager.unwrap(Session.class);
@@ -33,28 +33,23 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 		
 		return employees;
 	}
-
 	@Override
 	public void save(Employee theEmployee) {
 		Session currentSession = entityManager.unwrap(Session.class);
 		currentSession.save(theEmployee);
 	}
-
 	@Override
 	public void deleteById(int theId) {
 		Session currentSession = entityManager.unwrap(Session.class);
 		Employee tempEmp = currentSession.get(Employee.class, theId);
 		currentSession.delete(tempEmp);
 	}
-
 	@Override
 	public Employee getEmployeeById(int theId) {
 		Session currentSession = entityManager.unwrap(Session.class);
 		Employee tempEmp = currentSession.get(Employee.class, theId);
-		
 		return tempEmp;
 	}
-
 	@Override
 	public Employee getEmployeeByPID(int personalIdentityNumber) {
 		Session currentSession = entityManager.unwrap(Session.class);
@@ -63,18 +58,5 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 		Employee tempEmp = theQuery.getSingleResult();
 		return tempEmp;
 	}
-
-	@Override
-	public List<User> findAllUsers() {
-		Session currentSession = entityManager.unwrap(Session.class);
-
-		Query<User> theQuery
-				= currentSession.createQuery("from User", User.class);
-
-		List<User> users = theQuery.getResultList();
-
-		return users;
-	}
-
 
 }
