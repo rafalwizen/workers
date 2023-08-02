@@ -37,7 +37,6 @@ public class EmployeeController {
 	@GetMapping("/listEmployees")
 	public String showListEmployees(Model theModel) {	
 		theModel.addAttribute("employees", employeeService.findAll());
-		
 		return "employees";
 	}
 	
@@ -49,26 +48,19 @@ public class EmployeeController {
 	
 	@GetMapping("/editEployeeWorkTime")
 	public String editEmployeeWorkTime(Model theModel, @RequestParam("workTimeId") int theId) {
-		
 		theModel.addAttribute("tempWorkTime", workTimeService.getWorkTimeById(theId));
-
 		return "work-time-form";
 	}
 	
 	@GetMapping("/showFormForAddNewEmployee")
 	public String showFormForAddNewEmployee(Model theModel) {
-		
 		Employee theEmployee = new Employee();
-		
 		theModel.addAttribute("employee", theEmployee);
-		
 		return "employee-form";
 	}
 	
 	@GetMapping("/showFormForAddNewWorkTime")
-	public String showFormForAddNewWorkTime(
-			Model theModel, @RequestParam("tempEmployeeId") int theId) {
-		
+	public String showFormForAddNewWorkTime(Model theModel, @RequestParam("tempEmployeeId") int theId) {
 		WorkTime tempWorkTime = new WorkTime();
 		tempWorkTime.setEmployee(employeeService.getEmployeeById(theId));
 		theModel.addAttribute("tempWorkTime", tempWorkTime);

@@ -1,67 +1,57 @@
 <!DOCTYPE HTML>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-	<!-- Required meta tags -->
+    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	<link rel="stylesheet" th:href="@{/css/styles.css}" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/styles.css}"/>
 
-	<title>Employees</title>
+    <title>Employees</title>
 </head>
 <body>
 <div class="container">
-	<h2>Employee list (login: admin, password: admin1)</h2>
-	<p>
-	<div sec:authorize="isAuthenticated()">
-		Authenticated as <span sec:authentication="name"></span></div>
-
-	<div sec:authorize="hasRole('EMPLOYEE')">Text visible to user.</div>
-	<div sec:authorize="hasRole('ADMIN')">Text visible to admin.</div>
-<!--		User: <security:authentication property="principal.username" />-->
-<!--		<br><br>-->
-<!--		Role(s): <security:authentication property="principal.authorities" />-->
-	</p>
-	<hr>
-	<a th:href="@{/showFormForAddNewEmployee}"
-		class="btn btn-primary btn-sm mb-3 mt-3">
-		Add Employee
-	</a>
-	<table class="table table-bordered table-striped">
-		<thead class="thead-dark">
-			<tr>
-				<th>First Name</th>
-				<th>Last Name</th>
-				<th>PID Number</th>
-				<th>Action</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr th:each="tempEmployee : ${employees}">
-				<td th:text="${tempEmployee.firstName}" />	
-				<td th:text="${tempEmployee.lastName}" />	
-				<td th:text="${tempEmployee.personalIdentityNumber}" />
-				<td>
-				<a th:href="@{/employeeWorkTime(employeeId=${tempEmployee.id})}"
-						class="btn btn-info btn-sm">
-						Get Work Times
-				</a>
-				<a th:href="@{/deleteEmployee(employeeId=${tempEmployee.id})}"
-						class="btn btn-danger btn-sm"
-						onclick="if(!(confirm('Are you sure you want to delete this employee?'))) return false">
-						Delete
-				</a>
-				
-				</td>
-			</tr>
-		</tbody>		
-	</table>
-	<a th:href="@{/logout}"
-		class="btn btn-primary btn-sm mb-3 mt-3">
-		Logout
-	</a>
+    <hr>
+    <a th:href="@{/showFormForAddNewEmployee}"
+       class="btn btn-primary btn-sm mb-3 mt-3">
+        Add Employee
+    </a>
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>PID Number</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="tempEmployee : ${employees}">
+            <td th:text="${tempEmployee.firstName}"/>
+            <td th:text="${tempEmployee.lastName}"/>
+            <td th:text="${tempEmployee.personalIdentityNumber}"/>
+            <td>
+                <a th:href="@{/employeeWorkTime(employeeId=${tempEmployee.id})}"
+                   class="btn btn-info btn-sm">
+                    Get Work Times
+                </a>
+                <a th:href="@{/deleteEmployee(employeeId=${tempEmployee.id})}"
+                   class="btn btn-danger btn-sm"
+                   onclick="if(!(confirm('Are you sure you want to delete this employee?'))) return false">
+                    Delete
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/logout}"
+       class="btn btn-primary btn-sm mb-3 mt-3">
+        Logout
+    </a>
 </div>
 
 </body>

@@ -1,54 +1,55 @@
 <!DOCTYPE HTML>
-<html  lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-	<!-- Required meta tags -->
+    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	<link rel="stylesheet" th:href="@{/css/styles.css}" />
-	<title>Employees</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/styles.css}"/>
+    <title>Employees</title>
 </head>
 <body>
 <div class="container">
-	<h2 th:text="${tempEmployee.firstName} +' '+ ${tempEmployee.lastName}"></h2>
-	<hr>
-	<a th:href="@{/showFormForAddNewWorkTime(tempEmployeeId=${tempEmployee.id})}"
-		class="btn btn-primary btn-sm mb-3 mt-3">
-		Add New Working Time
-	</a>
-	<a  href=""
-		onClick="window.print();" id="printPageButton"
-		class="btn btn-primary btn-sm mb-3 mt-3">
-		Print
-	</a>
-	<table class="table table-bordered table-striped">
-		<thead class="thead-dark">
-			<tr>
-				<th>Start</th>
-				<th>Finish</th>
-				<th>Actions</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr th:each="tempWorkTime : ${tempEmployee.workTimes}">
-				<td th:text="${tempWorkTime.startDate}" />
-				<td th:text="${tempWorkTime.endDate}" />
-				<td>
-				<a th:href="@{/editEployeeWorkTime(workTimeId=${tempWorkTime.id})}"
-						class="btn btn-info btn-sm">
-						Edit work Time
-				</a>
-				<a th:href="@{/deleteWorkTime(workTimeId=${tempWorkTime.id})}"
-						class="btn btn-danger btn-sm"
-						onclick="if(!(confirm('Are you sure you want to delete this work time?'))) return false">
-						Delete
-				</a>
-				</td>
-		</tbody>
-	</table>
-	<a th:href="@{/listEmployees}">Back to Employees list</a>
+    <h2 th:text="${tempEmployee.firstName} +' '+ ${tempEmployee.lastName}"></h2>
+    <hr>
+    <a th:href="@{/showFormForAddNewWorkTime(tempEmployeeId=${tempEmployee.id})}"
+       class="btn btn-primary btn-sm mb-3 mt-3">
+        Add New Working Time
+    </a>
+    <a href=""
+       onClick="window.print();" id="printPageButton"
+       class="btn btn-primary btn-sm mb-3 mt-3">
+        Print
+    </a>
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>Start</th>
+            <th>Finish</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="tempWorkTime : ${tempEmployee.workTimes}">
+            <td th:text="${tempWorkTime.startDate}"/>
+            <td th:text="${tempWorkTime.endDate}"/>
+            <td>
+                <a th:href="@{/editEployeeWorkTime(workTimeId=${tempWorkTime.id})}"
+                   class="btn btn-info btn-sm">
+                    Edit work Time
+                </a>
+                <a th:href="@{/deleteWorkTime(workTimeId=${tempWorkTime.id})}"
+                   class="btn btn-danger btn-sm"
+                   onclick="if(!(confirm('Are you sure you want to delete this work time?'))) return false">
+                    Delete
+                </a>
+            </td>
+        </tbody>
+    </table>
+    <a th:href="@{/listEmployees}">Back to Employees list</a>
 </div>
 </body>
 </html>
