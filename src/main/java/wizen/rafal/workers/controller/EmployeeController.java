@@ -82,7 +82,6 @@ public class EmployeeController {
 	
 	@PostMapping("/saveWorkTime")
 	public String saveWorkTime(@ModelAttribute("workTime") WorkTime theWorkTime) {
-		//this line is used to set Employee by passed id
 		theWorkTime.setEmployee(employeeService.getEmployeeById(theWorkTime.getEmployee().getId()));
 		workTimeService.save(theWorkTime);
 		return "redirect:/employeeWorkTime?employeeId="+theWorkTime.getEmployee().getId();

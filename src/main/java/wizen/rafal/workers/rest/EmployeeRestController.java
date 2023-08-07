@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import wizen.rafal.workers.entity.Employee;
-import wizen.rafal.workers.entity.User;
 import wizen.rafal.workers.entity.WorkTime;
 import wizen.rafal.workers.service.EmployeeService;
 import wizen.rafal.workers.service.WorkTimeService;
