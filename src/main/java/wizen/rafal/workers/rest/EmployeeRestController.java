@@ -29,17 +29,15 @@ public class EmployeeRestController {
 		employeeService = theEmployeeService;
 		workTimeService = theWorkTimeService;
 	}
+
+	@GetMapping("/currentEmployee")
+	public Object getCurrentUser() {
+		return SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	}
 	
 	@GetMapping("/workTimes")
 	public List<WorkTime> getWorkTimeList() {
 		return workTimeService.findAll();
-	}
-
-	@GetMapping("/currentEmployee")
-	public Object getCurrentUser() {
-		Object p = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-		return p;
 	}
 
 	@GetMapping("/employees")
@@ -50,37 +48,27 @@ public class EmployeeRestController {
 	@GetMapping("/employees/{employeeId}")
 	public Employee getEmployeeById (@PathVariable int employeeId) {
 		Employee tempEmployee = employeeService.getEmployeeById(employeeId);
-		
 		if(tempEmployee == null) {
 			throw new EmployeeNotFoundException("Employee id not found - " + employeeId);
 		}
-		
 		return tempEmployee;
 	}
 	
 	@PostMapping("/employees")
 	public Employee addNewEmployee(@RequestBody Employee theEmployee) {
-		
-		// EmployeeDAO method saveOrUpdate - if id is null/0 then INSERT new Employee
 		theEmployee.setId(0);
 		employeeService.save(theEmployee);
-		
 		return theEmployee;
 	}
 	
 	@PostMapping("/workTimes")
-	public WorkTime addNewWorkTime(
-			@RequestBody HelperTransferObject tempHelperTransferObject) {
-		
-		Employee tempEmployee = employeeService.getEmployeeByPID(tempHelperTransferObject.getPersonalIdentityNumber());
+	public WorkTime addNewWorkTime(@RequestBody HelperTransferObject tempHelperTransferObject) {
+		Employee tempEmployee = employeeService.getEmployeeByPID(
+				tempHelperTransferObject.getPersonalIdentityNumber());
 		WorkTime tempWorkTime = new WorkTime (tempHelperTransferObject.isStart());
-		//method saveOrUpdate - if id is null/0 then INSERT new WorkTime
 		tempWorkTime.setId(0);
 		tempWorkTime.setEmployee(tempEmployee);
-		
 		workTimeService.save(tempWorkTime);
-		
 		return tempWorkTime;
-
 	}
 }
