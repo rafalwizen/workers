@@ -35,8 +35,8 @@ public class EmployeeController {
 	}
 	
 	@GetMapping("/listEmployees")
-	public String showListEmployees(Model theModel) {	
-		theModel.addAttribute("employees", employeeService.findAll());
+	public String showListEmployees(Model theModel) {
+		theModel.addAttribute("employees", employeeService.findByRole());
 		return "employees";
 	}
 	

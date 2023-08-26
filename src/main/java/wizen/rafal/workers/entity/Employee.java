@@ -25,6 +25,13 @@ public class Employee {
 	private User user;
 	@OneToMany(mappedBy="employee", cascade = CascadeType.ALL)
 	private List<WorkTime> workTimes;
+	@OneToMany(mappedBy="manager", cascade = CascadeType.ALL)
+	private List<Employee> team;
+	@ManyToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE,
+			CascadeType.DETACH, CascadeType.REFRESH}) // cascade without DELETE
+	@JoinColumn(name="manager_id")
+	@JsonIgnore
+	private Employee manager;
 
 	public Employee() {
 		
@@ -70,6 +77,22 @@ public class Employee {
 	
 	public List<WorkTime> getWorkTimes() {
 		return workTimes;
+	}
+
+	public List<Employee> getTeam() {
+		return team;
+	}
+
+	public void setTeam(List<Employee> team) {
+		this.team = team;
+	}
+
+	public Employee getManager() {
+		return manager;
+	}
+
+	public void setManager(Employee manager) {
+		this.manager = manager;
 	}
 
 	public void setWorkTimes(List<WorkTime> workTimes) {

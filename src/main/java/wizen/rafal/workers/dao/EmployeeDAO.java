@@ -11,4 +11,5 @@ public interface EmployeeDAO {
 	public void deleteById(int theId);
 	public Employee getEmployeeById(int theId);
 	public Employee getEmployeeByPID(int personalIdentityNumber);
+	public List<Employee> getEmployeesByManagerId(int theId);
 }

@@ -7,6 +7,7 @@ import wizen.rafal.workers.entity.User;
 
 public interface EmployeeService {
 	public List<Employee> findAll();
+	public List<Employee> findByRole();
 	public void save(Employee theEmployee);
 	public void deleteById(int theId);
 	public Employee getEmployeeById(int theId);

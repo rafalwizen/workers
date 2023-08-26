@@ -26,20 +26,25 @@ public class EmployeeServiceImpl implements EmployeeService {
 		employeeDAO = theEmployeeDAO;
 		userDAO = theUserDAO;
 	}
-	
+
 	@Override
 	@Transactional
 	public List<Employee> findAll() {
+		return employeeDAO.findAll();
+	}
+	@Override
+	@Transactional
+	public List<Employee> findByRole() {
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		if (user.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) {
 			return employeeDAO.findAll();
 		}
 		List<Employee> list = new ArrayList<>();
-		if (user.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_MANAGER"))) {
-
-		}
 		String currentUserName = user.getUsername();
 		int id = userDAO.getUserByName(currentUserName).getEmployee().getId();
+		if (user.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_MANAGER"))) {
+			list.addAll(employeeDAO.getEmployeesByManagerId(id));
+		}
 		list.add(employeeDAO.getEmployeeById(id));
 
 		return list;

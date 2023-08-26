@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import wizen.rafal.workers.entity.Employee;
 import wizen.rafal.workers.entity.User;
+import wizen.rafal.workers.entity.WorkTime;
 
 @Repository
 public class EmployeeDAOImpl implements EmployeeDAO {
@@ -57,5 +58,17 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 				"from Employee E WHERE E.personalIdentityNumber = "+personalIdentityNumber, Employee.class);
 		Employee tempEmp = theQuery.getSingleResult();
 		return tempEmp;
+	}
+
+	@Override
+	public List<Employee> getEmployeesByManagerId(int theId) {
+		Session currentSession = entityManager.unwrap(Session.class);
+
+		Query<Employee> theQuery
+				= currentSession.createQuery("from Employee E WHERE E.manager.id = ?1");
+		theQuery.setParameter(1, theId);
+		List<Employee> employeeList = theQuery.getResultList();
+
+		return employeeList;
 	}
 }

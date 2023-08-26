@@ -31,7 +31,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 //				.loginPage("/showMyLoginPage")
 //				.loginProcessingUrl("/authenticateTheUser")
 				.permitAll()
-				.successForwardUrl("/listEmployees")
+//				.successForwardUrl("/listEmployees")
 			.and()
 			.logout().permitAll().logoutSuccessUrl("/login")
 			.and()
