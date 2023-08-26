@@ -58,5 +58,4 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 		Employee tempEmp = theQuery.getSingleResult();
 		return tempEmp;
 	}
-
 }
