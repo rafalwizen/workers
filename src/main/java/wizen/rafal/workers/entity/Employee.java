@@ -1,6 +1,8 @@
 package wizen.rafal.workers.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -74,6 +76,14 @@ public class Employee {
 	public void setPersonalIdentityNumber(int personalIdentityNumber) {
 		this.personalIdentityNumber = personalIdentityNumber;
 	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 	
 	public List<WorkTime> getWorkTimes() {
 		return workTimes;
@@ -114,11 +124,17 @@ public class Employee {
 				+ ", personalIdentityNumber=" + personalIdentityNumber + "]";
 	}
 
-	public User getUser() {
-		return user;
+	@Transient
+	public String getRole() {
+		org.springframework.security.core.userdetails.User user
+				= (org.springframework.security.core.userdetails.User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		if (user.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) {
+			return "Admin";
+		}
+		if (user.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_MANAGER"))) {
+			return "Manager";
+		}
+		return "Employee";
 	}
 
-	public void setUser(User user) {
-		this.user = user;
-	}
 }

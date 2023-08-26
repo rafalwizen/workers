@@ -26,6 +26,7 @@
             <th>First Name</th>
             <th>Last Name</th>
             <th>PID Number</th>
+            <th>Role</th>
             <th>Action</th>
         </tr>
         </thead>
@@ -34,6 +35,7 @@
             <td th:text="${tempEmployee.firstName}"/>
             <td th:text="${tempEmployee.lastName}"/>
             <td th:text="${tempEmployee.personalIdentityNumber}"/>
+            <td th:text="${tempEmployee.role}"/>
             <td>
                 <a th:href="@{/employeeWorkTime(employeeId=${tempEmployee.id})}"
                    class="btn btn-info btn-sm">
