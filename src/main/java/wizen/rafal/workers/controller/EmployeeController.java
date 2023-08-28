@@ -5,6 +5,9 @@ import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
@@ -36,6 +39,13 @@ public class EmployeeController {
 	
 	@GetMapping("/listEmployees")
 	public String showListEmployees(Model theModel) {
+		boolean isAdmin = false;
+
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		if (user.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) {
+			isAdmin = true;
+		}
+		theModel.addAttribute("currentUserIsAdmin", isAdmin);
 		theModel.addAttribute("employees", employeeService.findByRole());
 		return "employees";
 	}
