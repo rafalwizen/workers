@@ -40,7 +40,6 @@ public class EmployeeController {
 	@GetMapping("/listEmployees")
 	public String showListEmployees(Model theModel) {
 		boolean isAdmin = false;
-
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		if (user.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) {
 			isAdmin = true;

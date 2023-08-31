@@ -26,7 +26,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 		employeeDAO = theEmployeeDAO;
 		userDAO = theUserDAO;
 	}
-
 	@Override
 	@Transactional
 	public List<Employee> findAll() {
